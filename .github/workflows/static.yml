@@ -59,9 +59,9 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v2
   notify:
-    if: ${{ failure() }}
+    if: ${{ cancelled() }}
     runs-on: ubuntu-latest
     steps:
       - name: Notify of problem
         run: |
-          echo "We couldn't deploy"
+          echo "We couldn't deploy, you cancelled"
