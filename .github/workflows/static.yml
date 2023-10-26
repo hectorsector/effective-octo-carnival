@@ -58,10 +58,7 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
-  notify:
-    if: ${{ failure() }}
-    runs-on: ubuntu-latest
-    steps:
       - name: Notify of problem
+        if: ${{ failure() }}
         run: |
           echo "We couldn't deploy, you cancelled"
