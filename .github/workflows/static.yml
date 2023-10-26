@@ -61,4 +61,4 @@ jobs:
       - name: Notify of problem
         if: ${{ failure() }}
         run: |
-          echo "We couldn't deploy, you cancelled"
+          gh issue create --title "Coudln't deploy" --body "We couldn't deploy ${{ github.ref }}"
