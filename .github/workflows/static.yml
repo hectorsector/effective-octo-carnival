@@ -1,3 +1,20 @@
+# TODO:
+# - [x] Concurrency
+# - [ ] Test matrix
+# - [-] Expressions
+# - [ ] scripts
+# - [-] GH CLI
+
+# Based on: https://github.com/actions/starter-workflows/blob/b1df8a546ed4d0f27d46aaf2f8ac1118bc522638/pages/static.yml
+# Out of the box, it deploys static content to GitHub Pages without a Jekyll build
+# Add: on failure, open an issue
+#   - adds an expression
+#   - adds use of GH CLI
+
+# Still need: Matrix and a script to do a thing
+#   - try: add a test for the markdown content, add a script to test files changed and then drop a comment in the PR with files changed
+#   - potentially: can also create a preview build?
+
 # Simple workflow for deploying static content to GitHub Pages
 name: Deploy static content to Pages
 
@@ -41,3 +58,10 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
+  notify:
+    if: ${{ failure() }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify of problem
+        run: |
+          echo "We couldn't deploy"
