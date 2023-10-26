@@ -60,5 +60,7 @@ jobs:
         uses: actions/deploy-pages@v2
       - name: Notify of problem
         if: ${{ failure() }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh issue create --title "Coudln't deploy" --body "We couldn't deploy ${{ github.ref }}"
